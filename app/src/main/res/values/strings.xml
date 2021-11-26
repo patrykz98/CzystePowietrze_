@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">CzystePowietrze</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_title_second">Powietrze</string>
+    <string name="app_title_first">Czyste</string>
+    <string name="menu_item_title1">Dostępne stacje pomiarowe</string>
+    <string name="menu_item_title2">Szczegółowe informacje wybranych stacji pogodowych</string>
+    <string name="menu_subtitle_1">Zobacz mape ▶</string>
+    <string name="menu_subtitle_2">Wybierz z listy ▶</string>
+    <string name="detailsTitle_1">Wartości</string>
+    <string name="detailsTitle_2"> zanieczyszczeń</string>
+    <string name="listDetailsTitle_1">Dostępne</string>
+    <string name="listDetailsTitle_2"> stacje pomiarowe</string>
 </resources>
