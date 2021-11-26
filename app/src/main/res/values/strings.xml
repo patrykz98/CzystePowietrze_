@@ -12,4 +12,7 @@
     <string name="detailsTitle_2"> zanieczyszczeń</string>
     <string name="listDetailsTitle_1">Dostępne</string>
     <string name="listDetailsTitle_2"> stacje pomiarowe</string>
+    <string name="textViewSearchByCityTtile1">Szukaj</string>
+    <string name="textViewSearchByCityTtile2"> po nazwie miasta</string>
+    <string name="szukaj">Szukaj</string>
 </resources>

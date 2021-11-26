@@ -63,6 +63,7 @@ class DetailsIdFragment : Fragment() {
                         if(response.isSuccessful){
                             val responseData = response.body()!!
                             binding.textView3.text = responseData.values.get(1).value.toString()
+                            Toast.makeText(context, "Udało się!", Toast.LENGTH_SHORT).show()
                             response.body()?.let {
                                 rvAdapter.setDataParams(responseData.values.get(i).value.toString())
                             }

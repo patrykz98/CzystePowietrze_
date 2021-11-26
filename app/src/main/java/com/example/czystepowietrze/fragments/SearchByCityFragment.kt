@@ -11,21 +11,20 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.czystepowietrze.R
 import com.example.czystepowietrze.Repository.RetrofitRepository
-import com.example.czystepowietrze.adapter.DetailsRecyclerViewAdapter
-import com.example.czystepowietrze.databinding.FragmentDetailsBinding
+import com.example.czystepowietrze.adapter.SearchByCityRecyclerAdapter
+import com.example.czystepowietrze.databinding.FragmentSearchByCityBinding
 import com.example.czystepowietrze.viewModel.FragmentViewModel
 import com.example.retrofittest.FragmentViewModelFactory
 
-class DetailsFragment : Fragment() {
+class SearchByCityFragment : Fragment() {
 
-    private var _binding: FragmentDetailsBinding? = null
+    private var _binding: FragmentSearchByCityBinding? = null
     private val binding get () = _binding!!
 
-
-    private lateinit var viewModel: FragmentViewModel
     private val rvAdapter by lazy {
-        DetailsRecyclerViewAdapter()
+        SearchByCityRecyclerAdapter()
     }
+    private lateinit var viewModel: FragmentViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,45 +34,41 @@ class DetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentDetailsBinding.inflate(inflater, container, false)
+        _binding = FragmentSearchByCityBinding.inflate(inflater, container, false)
+        val arguments = this.arguments
 
         setupRecyclerview()
 
-
-        val retrofitRepository = RetrofitRepository()
-        val viewModelFactory = FragmentViewModelFactory(retrofitRepository)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(FragmentViewModel::class.java)
-        viewModel.getAllStations()
-        viewModel.myResponse.observe(viewLifecycleOwner, Observer {response ->
-            if(response.isSuccessful){
-                response.body()?.let {
-                    rvAdapter.setData(it)
+        binding.buttonSearchByCity.setOnClickListener{
+            val retrofitRepository = RetrofitRepository()
+            val viewModelFactory = FragmentViewModelFactory(retrofitRepository)
+            viewModel = ViewModelProvider(this, viewModelFactory).get(FragmentViewModel::class.java)
+            viewModel.getAllStations()
+            viewModel.myResponse.observe(viewLifecycleOwner, Observer {response ->
+                if(response.isSuccessful){
+                    response.body()?.let {
+                        rvAdapter.setData(it, binding.editTextTextPersonName.text.toString().toLowerCase())
+                    }
+                }else{
+                    Toast.makeText(context, response.code().toString(), Toast.LENGTH_SHORT).show()
                 }
-            }else{
-                Toast.makeText(context, response.code().toString(), Toast.LENGTH_SHORT).show()
-            }
-        })
+            })
+        }
 
 
         return binding.root
     }
 
     private fun setupRecyclerview() {
-        binding.recyclerView.adapter = rvAdapter
-        binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        binding.recyclerViewSearchByCity.adapter = rvAdapter
+        binding.recyclerViewSearchByCity.layoutManager = LinearLayoutManager(context)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.arrowBack.setOnClickListener{
-            val fragment = MenuFragment()
-            val transaction = fragmentManager?.beginTransaction()
-            transaction?.replace(R.id.mainLayout,fragment)?.commit()
-        }
-
-        binding.buttonSearchByCity.setOnClickListener{
-            val fragment = SearchByCityFragment()
+            val fragment = DetailsFragment()
             val transaction = fragmentManager?.beginTransaction()
             transaction?.replace(R.id.mainLayout,fragment)?.commit()
         }
