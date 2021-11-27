@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.czystepowietrze.R
 import com.example.czystepowietrze.Repository.RetrofitRepository
 import com.example.czystepowietrze.adapter.DetailsIDRecyclerViewAdapter
+import com.example.czystepowietrze.api.ParamDetailsJson
 import com.example.czystepowietrze.databinding.FragmentDetailsIdBinding
 import com.example.czystepowietrze.viewModel.FragmentViewModel
 import com.example.retrofittest.FragmentViewModelFactory
@@ -37,6 +38,9 @@ class DetailsIdFragment : Fragment() {
         _binding = FragmentDetailsIdBinding.inflate(inflater, container, false)
         val arguments = this.arguments
         val inputData = arguments?.get("position").toString()
+        val inputDataCity = arguments?.get("city").toString()
+
+        binding.textView2.text = inputDataCity
 
         setupRecyclerview()
 
@@ -44,6 +48,9 @@ class DetailsIdFragment : Fragment() {
         val viewModelFactory = FragmentViewModelFactory(retrofitRepository)
         var paramIds = ArrayList<String>()
         var paramValues = ArrayList<String>()
+        var paramKeys = ArrayList<String>()
+        var listParamDetails: List<ParamDetailsJson>
+
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(FragmentViewModel::class.java)
         viewModel.getStationDetails(inputData)
@@ -51,32 +58,33 @@ class DetailsIdFragment : Fragment() {
             if(response.isSuccessful){
                 val responseData = response.body()!!
                 for(i in 0..responseData.size-1){
-                    paramIds.add(responseData.get(i).id.toString())
+                    paramIds.add(i,responseData.get(i).id.toString())
                 }
 
-
-
-                for(i in 0..paramIds.size-1){
+                for(i in 0..paramIds.size-1) {
                     viewModel.getParamDetails(paramIds[i])
-                    viewModel.myResponseParam
+                }
+                viewModel.myResponseParam
                         .observe(viewLifecycleOwner, Observer { response ->
-                        if(response.isSuccessful){
-                            val responseData = response.body()!!
-                            binding.textView3.text = responseData.values.get(1).value.toString()
-                            Toast.makeText(context, "Udało się!", Toast.LENGTH_SHORT).show()
-                            response.body()?.let {
-                                rvAdapter.setDataParams(responseData.values.get(i).value.toString())
+                            if (response.isSuccessful) {
+                                val responseData = response.body()!!
+                                paramKeys.add(responseData.key)
+                                if(responseData.values.get(1).value != null)
+                                    paramValues.add(responseData.values.get(1).value.toString())
+
+                                response.body()?.let {
+                                    rvAdapter.setData(paramKeys, paramValues)
+//                                    binding.textView3.text = paramValues.toString() + "  " + paramKeys.toString()
+                                }
                             }
-                        }
-                    })
-                }
+                        })
+
+//                response.body()?.let {
+//                    rvAdapter.setData(it, paramValues)
+//                }
 
 
-                response.body()?.let {
-                    rvAdapter.setData(it)
-                }
-
-                binding.textView2.text = paramIds.toString()
+//                binding.textView2.text = paramIds.toString()
             }else{
                 Toast.makeText(context, response.code().toString(), Toast.LENGTH_SHORT).show()
             }

@@ -31,6 +31,7 @@ class DetailsRecyclerViewAdapter: RecyclerView.Adapter<DetailsRecyclerViewAdapte
             override fun onClick(v: View?) {
                 val bundle = Bundle()
                 bundle.putString("position", responseList[position].id.toString())
+                bundle.putString("city", responseList[position].stationName)
                 val activity = v!!.context as AppCompatActivity
                 val fragment = DetailsIdFragment()
                 fragment.arguments = bundle

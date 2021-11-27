@@ -85,10 +85,7 @@ class AvailableLocationsFragment : Fragment() {
                 for(i in 0..responseBodySize-1){
                     listGegrLat.add(responseBody.get(i).gegrLat.toString())
                     listGegrLan.add(responseBody.get(i).gegrLon.toString())
-//                    if(!responseBody.get(i).addressStreet.isEmpty())
-                        listCities.add(responseBody.get(i).stationName.toString())
-//                    else
-//                        listCities.add(responseBody.get(i).stationName.toString())
+                    listCities.add(responseBody.get(i).stationName.toString())
                 }
                 setMarkers(listGegrLat, listGegrLan, listCities, listGegrLat.size)
             }else{
