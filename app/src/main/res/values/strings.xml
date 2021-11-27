@@ -16,4 +16,5 @@
     <string name="textViewSearchByCityTtile2"> po nazwie miasta</string>
     <string name="szukaj">Szukaj</string>
     <string name="buttonShowStations">Pokaż stacje pomiarowe</string>
+    <string name="start_typing">Zacznij pisać</string>
 </resources>

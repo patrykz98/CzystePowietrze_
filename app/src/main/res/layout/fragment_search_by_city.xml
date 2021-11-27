@@ -43,43 +43,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textViewSearchByCityTtile1" />
 
+    <!--    <Button-->
+<!--        android:id="@+id/buttonSearchByCity"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:backgroundTint="@color/black"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:drawableTint="@color/black"-->
+<!--        android:fontFamily="@font/advent_pro_semibold"-->
+<!--        android:text="@string/szukaj"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/editTextCity"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/editTextCity" />-->
+
     <EditText
         android:id="@+id/editTextCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
+        android:layout_marginTop="28dp"
         android:backgroundTint="@color/black"
-        android:inputType="textPersonName"
+        android:ems="10"
         android:fontFamily="@font/advent_pro"
-        android:hint="Np. Kraków"
+        android:hint="@string/start_typing"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSearchByCityTtile1" />
-
-    <Button
-        android:id="@+id/buttonSearchByCity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@color/black"
-        android:textColor="@color/white"
-        android:drawableTint="@color/black"
-        android:fontFamily="@font/advent_pro_semibold"
-        android:text="@string/szukaj"
-        app:layout_constraintEnd_toEndOf="@+id/editTextCity"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCity" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewSearchByCity"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSearchByCity" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextCity" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
