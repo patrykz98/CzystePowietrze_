@@ -37,24 +37,24 @@ class SearchByCityFragment : Fragment() {
         _binding = FragmentSearchByCityBinding.inflate(inflater, container, false)
         val arguments = this.arguments
 
-        setupRecyclerview()
-
         binding.buttonSearchByCity.setOnClickListener{
-            val retrofitRepository = RetrofitRepository()
-            val viewModelFactory = FragmentViewModelFactory(retrofitRepository)
-            viewModel = ViewModelProvider(this, viewModelFactory).get(FragmentViewModel::class.java)
-            viewModel.getAllStations()
-            viewModel.myResponse.observe(viewLifecycleOwner, Observer {response ->
-                if(response.isSuccessful){
-                    response.body()?.let {
-                        rvAdapter.setData(it, binding.editTextTextPersonName.text.toString().toLowerCase())
+            if(binding.editTextCity.text.isNotEmpty()){
+                val retrofitRepository = RetrofitRepository()
+                val viewModelFactory = FragmentViewModelFactory(retrofitRepository)
+                viewModel = ViewModelProvider(this, viewModelFactory).get(FragmentViewModel::class.java)
+                viewModel.getAllStations()
+                viewModel.myResponse.observe(viewLifecycleOwner, Observer {response ->
+                    if(response.isSuccessful){
+                        response.body()?.let {
+                            rvAdapter.setData(it, binding.editTextCity.text.toString().lowercase())
+                        }
+                        setupRecyclerview()
+                    }else{
+                        Toast.makeText(context, response.code().toString(), Toast.LENGTH_SHORT).show()
                     }
-                }else{
-                    Toast.makeText(context, response.code().toString(), Toast.LENGTH_SHORT).show()
-                }
-            })
+                })
+            }
         }
-
 
         return binding.root
     }

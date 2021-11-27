@@ -24,13 +24,11 @@ class SearchByCityRecyclerAdapter: RecyclerView.Adapter<SearchByCityRecyclerAdap
             holder.itemView.textViewStreet.text = responseList[position].addressStreet
             holder.itemView.textViewStationName.text = responseList[position].stationName
 
-
-
-
         holder.itemView.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View?) {
                 val bundle = Bundle()
                 bundle.putString("position", responseList[position].id.toString())
+                bundle.putString("city", responseList[position].stationName)
                 val activity = v!!.context as AppCompatActivity
                 val fragment = DetailsIdFragment()
                 fragment.arguments = bundle
@@ -41,7 +39,7 @@ class SearchByCityRecyclerAdapter: RecyclerView.Adapter<SearchByCityRecyclerAdap
     }
 
     fun filter(city: String){
-        responseList = responseList!!.filter{ value ->  value.addressStreet.toLowerCase().contains(city)}
+        responseList = responseList.filter{ value ->  value.stationName.lowercase().contains(city)}
     }
 
     override fun getItemCount(): Int {

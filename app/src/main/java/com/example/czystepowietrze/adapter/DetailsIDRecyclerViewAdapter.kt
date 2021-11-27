@@ -44,41 +44,11 @@ class DetailsIDRecyclerViewAdapter: RecyclerView.Adapter<DetailsIDRecyclerViewAd
         return paramKeys.size
     }
 
-//    fun setData(newList: List<ParamDetailsJson>){
-//        responseList = newList
-//        notifyDataSetChanged()
-//    }
-
     fun setData(paramKeys: ArrayList<String>, paramValues: ArrayList<String>){
         this.paramKeys = paramKeys
         this.paramValues = paramValues
         notifyDataSetChanged()
     }
-
-//    fun setDataParams(listItemParams: String){
-//        responseListParams.add(listItemParams)
-//        this.paramValues = paramValues
-//        isUpdated = true
-//        notifyDataSetChanged()
-//    }
-
-        fun setDataParams(listItemParams: ArrayList<String>){
-        this.responseListParams = listItemParams
-        isUpdated = true
-        notifyDataSetChanged()
-    }
-
-
-
-    fun getDataParams(): ArrayList<String> {
-        return this.responseListParams
-    }
-
-
-//    fun setData(newList: List<AirStationDetailsJsonItem>, listOfParamValue: List<String>){
-//        responseList = newList
-//        notifyDataSetChanged()
-//    }
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 }

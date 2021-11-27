@@ -44,7 +44,7 @@
         app:layout_constraintTop_toTopOf="@+id/textViewSearchByCityTtile1" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editTextCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -69,8 +69,8 @@
         android:drawableTint="@color/black"
         android:fontFamily="@font/advent_pro_semibold"
         android:text="@string/szukaj"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintEnd_toEndOf="@+id/editTextCity"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCity" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewSearchByCity"
