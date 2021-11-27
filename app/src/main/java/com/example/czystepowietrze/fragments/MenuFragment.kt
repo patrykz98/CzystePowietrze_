@@ -20,6 +20,7 @@ class MenuFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
@@ -27,6 +28,13 @@ class MenuFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMenuBinding.inflate(inflater, container, false)
+
+        binding.imageView.animate().apply {
+            duration = 1000
+            alpha(.8f)
+            rotationYBy(360f)
+            translationYBy(10f).start()
+        }
 
         layoutManager = LinearLayoutManager(context)
         binding.recyclerView.layoutManager = layoutManager

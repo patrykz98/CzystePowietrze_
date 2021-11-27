@@ -37,6 +37,7 @@ class SearchByCityFragment : Fragment() {
         _binding = FragmentSearchByCityBinding.inflate(inflater, container, false)
         val arguments = this.arguments
 
+
         binding.buttonSearchByCity.setOnClickListener{
             if(binding.editTextCity.text.isNotEmpty()){
                 val retrofitRepository = RetrofitRepository()
